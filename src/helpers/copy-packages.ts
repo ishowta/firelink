@@ -1,6 +1,7 @@
 import { join } from 'path';
 
-import { DependenciesLink, isWin } from '../injection-tokens';
+import { DependenciesLink, isWin, Tasks } from '../injection-tokens';
+import { includes } from './args-extractors';
 import { FolderSync } from './copy-recursive';
 import { Worker } from './worker';
 
@@ -34,7 +35,7 @@ export function copyPackages(
 ) {
   return Promise.all(
     dependencies.map(({ folder }) =>
-      isWin
+      isWin && !includes(Tasks.USE_RSYNC)
         ? FolderSync.copyFolderRecursive(folder, join(outFolder, outFolderName))
         : copyOther(folder, outFolder, outFolderName, excludes),
     ),

@@ -37,6 +37,7 @@ export enum Tasks {
   BUILD = '--buildCommand',
   LEAVE_CHANGES = '--leave-changes',
   NO_RUNNER = '--no-runner',
+  USE_RSYNC = '--use-rsync',
 }
 
 export interface DependenciesLink {
